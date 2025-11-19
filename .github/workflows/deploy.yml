@@ -41,9 +41,12 @@ jobs:
           # Create website directory if it doesn't exist
           ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "mkdir -p /home/quinn/website/dist /home/quinn/website/operations"
 
-          # Copy built files and operations config to server
-          scp -i ~/.ssh/deploy_key -r dist/* $SERVER_USER@$SERVER_HOST:/home/quinn/website/dist/
-          scp -i ~/.ssh/deploy_key -r operations/* $SERVER_USER@$SERVER_HOST:/home/quinn/website/operations/
+          # Ensure parent directories have correct permissions for nginx
+          ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "chmod 751 /home/quinn && chmod 755 /home/quinn/website"
+
+          # Sync built files and operations config to server
+          rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key" dist/ $SERVER_USER@$SERVER_HOST:/home/quinn/website/dist/
+          rsync -avz -e "ssh -i ~/.ssh/deploy_key" operations/ $SERVER_USER@$SERVER_HOST:/home/quinn/website/operations/
 
           # Fix permissions so nginx can read files
           ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "chmod -R a+rX /home/quinn/website/dist"
