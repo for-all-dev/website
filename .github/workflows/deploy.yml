@@ -45,5 +45,8 @@ jobs:
           scp -i ~/.ssh/deploy_key -r dist/* $SERVER_USER@$SERVER_HOST:/home/quinn/website/dist/
           scp -i ~/.ssh/deploy_key -r operations/* $SERVER_USER@$SERVER_HOST:/home/quinn/website/operations/
 
+          # Fix permissions so nginx can read files
+          ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "chmod -R a+rX /home/quinn/website/dist"
+
           # Optional: Reload nginx if needed
           # ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "sudo systemctl reload nginx"
