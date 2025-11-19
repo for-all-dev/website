@@ -18,3 +18,4 @@
 
 - **[Can we secure AI with formal methods?](https://newsletter.for-all.dev)** - Current events newsletter (FKA Progress in Guaranteed Safe AI)
 - **[FMxAI 2025](https://sites.google.com/view/fmxai2025)** - Conference on formal methods with machine learning
+- **[Cookbook](https://recipes.for-all.dev)** - formal verification agent recipes, an ebook.
