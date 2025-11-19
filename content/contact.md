@@ -1,3 +1,3 @@
-## Contact
+## Let us know how we can help
 
-Get in touch with us at [contact@for-all.dev](mailto:contact@for-all.dev)
+`quinn@for-all.dev`

@@ -1,0 +1,48 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Deploy to server via SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SERVER_USER: quinn
+          SERVER_HOST: ${{ secrets.FORALLDEV_IP4 }}
+        run: |
+          # Set up SSH key
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          # Add server to known_hosts
+          ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+
+          # Create website directory if it doesn't exist
+          ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "mkdir -p /home/quinn/website"
+
+          # Copy built files to server
+          scp -i ~/.ssh/deploy_key -r dist/* $SERVER_USER@$SERVER_HOST:/home/quinn/website/dist/
+
+          # Optional: Reload nginx if needed
+          # ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "sudo systemctl reload nginx"

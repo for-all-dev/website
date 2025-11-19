@@ -31,10 +31,10 @@ npm run watch
 
 Then serve locally:
 ```bash
-python3 -m http.server -d dist
+python3 -m http.server -d dist 8080
 ```
 
-Visit http://localhost:8000
+Visit http://localhost:8080
 
 ## Structure
 

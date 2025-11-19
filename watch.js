@@ -34,4 +34,4 @@ try {
     console.error('Initial build failed:', err.message);
 }
 
-console.log('\n💡 Tip: Serve with "python3 -m http.server -d dist" or similar\n');
+console.log('\n💡 Tip: Serve with "python3 -m http.server -d dist 8080" or similar\n');
