@@ -61,8 +61,8 @@ header {
     object-position: left center;
 }
 
-/* Hide banner placeholder if image doesn't exist */
-.banner[src*="banner.png"] {
+/* Hide banner if image fails to load */
+.banner {
     display: none;
 }
 
