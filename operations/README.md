@@ -9,8 +9,8 @@ This directory contains infrastructure configuration for deploying the for-all.d
 Nginx configuration for serving the static site from `/home/quinn/website/dist/`.
 
 **Setup:**
-1. Copy to `/etc/nginx/sites-available/for-all.dev`
-2. Create symlink: `sudo ln -s /etc/nginx/sites-available/for-all.dev /etc/nginx/sites-enabled/`
+1. Symlink to nginx sites-available: `sudo ln -s /home/quinn/website/operations/nginx-website.conf /etc/nginx/sites-available/for-all.dev`
+2. Enable site: `sudo ln -s /etc/nginx/sites-available/for-all.dev /etc/nginx/sites-enabled/`
 3. Test configuration: `sudo nginx -t`
 4. Reload nginx: `sudo systemctl reload nginx`
 5. Set up SSL with certbot: `sudo certbot --nginx -d for-all.dev`

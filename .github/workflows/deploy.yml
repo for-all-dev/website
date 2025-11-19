@@ -39,10 +39,11 @@ jobs:
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
 
           # Create website directory if it doesn't exist
-          ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "mkdir -p /home/quinn/website"
+          ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "mkdir -p /home/quinn/website/dist /home/quinn/website/operations"
 
-          # Copy built files to server
+          # Copy built files and operations config to server
           scp -i ~/.ssh/deploy_key -r dist/* $SERVER_USER@$SERVER_HOST:/home/quinn/website/dist/
+          scp -i ~/.ssh/deploy_key -r operations/* $SERVER_USER@$SERVER_HOST:/home/quinn/website/operations/
 
           # Optional: Reload nginx if needed
           ssh -i ~/.ssh/deploy_key $SERVER_USER@$SERVER_HOST "sudo systemctl reload nginx"
