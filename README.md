@@ -12,7 +12,7 @@ npm install
 
 Edit markdown files in `content/`:
 - `content/hero.md` - Hero section with summary
-- `content/previous-work.md` - Projects, papers, customers
+- `content/work.md` - Projects, papers, customers
 - `content/contact.md` - Contact information
 
 ### Build once
