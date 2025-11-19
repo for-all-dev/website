@@ -1,0 +1,17 @@
+{
+  "name": "forall-website",
+  "version": "1.0.0",
+  "description": "for-all.dev landing page",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node watch.js",
+    "dev": "npm run watch"
+  },
+  "dependencies": {
+    "marked": "^12.0.0"
+  },
+  "devDependencies": {
+    "chokidar": "^3.6.0"
+  }
+}
