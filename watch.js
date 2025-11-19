@@ -34,4 +34,6 @@ try {
     console.error('Initial build failed:', err.message);
 }
 
-console.log('\n💡 Tip: Serve with "python3 -m http.server -d dist 8080" or similar\n');
+console.log('\n💡 To view your site, run in another terminal:');
+console.log('   python3 -m http.server -d dist 8080');
+console.log('   Then visit: http://localhost:8080\n');
