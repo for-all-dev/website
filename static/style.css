@@ -164,6 +164,15 @@ pre code {
     padding: 0;
 }
 
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    width: 80%;
+    display: block;
+    margin: 1rem 0;
+}
+
 /* Footer */
 footer {
     max-width: var(--max-width);
