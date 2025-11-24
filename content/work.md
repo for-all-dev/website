@@ -10,6 +10,7 @@
 - **[Can we secure AI with formal methods?](https://newsletter.for-all.dev)**
 - **[FMxAI 2025](https://sites.google.com/view/fmxai2025)**
 - **[Cookbook](https://recipes.for-all.dev)**
+- **[Cruxes for AI Control via Proof Carrying Code](https://www.lesswrong.com/s/f9ewpmtz8AogLxvqx)**
 
 ### Organizations
 
