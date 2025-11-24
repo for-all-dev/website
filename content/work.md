@@ -2,8 +2,9 @@
 
 ### Papers
 
-- **[Proving the Coding Interview: A Benchmark for Formally Verified Code Generation](https://arxiv.org/abs/2502.05714)**
+- **[(Forthcoming) FVSpec](https://www.aria.org.uk/opportunity-spaces/mathematics-for-safe-ai?cardId=fv-spec#opportunityseeds)**
 - **[A benchmark for vericoding: formally verified program synthesis](https://arxiv.org/abs/2509.22908)**
+- **[Proving the Coding Interview: A Benchmark for Formally Verified Code Generation](https://arxiv.org/abs/2502.05714)**
 
 ### Comms/movement stuff
 
