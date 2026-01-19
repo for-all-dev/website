@@ -17,3 +17,4 @@
 
 - **[Beneficial AI Foundation (BAIF)](https://beneficialaifoundation.org)**
 - **[Galois](https://galois.com)** - Contracting on [ARIA's Mathematics for Safe AI program](https://www.aria.org.uk/opportunity-spaces/mathematics-for-safe-ai)
+- **[Lucid Computing](https://lucidcomputing.ai)**
