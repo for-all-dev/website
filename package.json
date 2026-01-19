@@ -12,6 +12,6 @@
     "marked": "^17.0.1"
   },
   "devDependencies": {
-    "chokidar": "^3.6.0"
+    "chokidar": "^5.0.0"
   }
 }
