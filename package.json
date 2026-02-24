@@ -9,7 +9,7 @@
     "dev": "npm run watch"
   },
   "dependencies": {
-    "marked": "^17.0.1"
+    "marked": "^17.0.3"
   },
   "devDependencies": {
     "chokidar": "^5.0.0"
