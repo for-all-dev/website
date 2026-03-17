@@ -8,9 +8,11 @@
 
 ### Comms/movement stuff
 
+- **[Tractable Problems in AI Security via Formal Methods](https://tractable.for-all.dev)**
 - **[Can we secure AI with formal methods?](https://newsletter.for-all.dev)**
 - **[FMxAI 2025](https://sites.google.com/view/fmxai2025)**
 - **[Cookbook](https://recipes.for-all.dev)**
+- **[DC AI Security Reading Group](https://aisecurity.forum/dc-reading-group-26)**
 - **[Cruxes for AI Control via Proof Carrying Code](https://www.lesswrong.com/s/f9ewpmtz8AogLxvqx)**
 
 ### Organizations
