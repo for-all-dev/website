@@ -2,7 +2,7 @@
 
 ### Papers
 
-- **[(Forthcoming) FVSpec](https://www.aria.org.uk/opportunity-spaces/mathematics-for-safe-ai?cardId=fv-spec#opportunityseeds)**
+- **[FVSpec](https://arxiv.org/abs/2606.01008)**
 - **[A benchmark for vericoding: formally verified program synthesis](https://arxiv.org/abs/2509.22908)**
 - **[Proving the Coding Interview: A Benchmark for Formally Verified Code Generation](https://arxiv.org/abs/2502.05714)**
 
@@ -10,10 +10,7 @@
 
 - **[Tractable Problems in AI Security via Formal Methods](https://tractable.for-all.dev)**
 - **[Can we secure AI with formal methods?](https://newsletter.for-all.dev)**
-- **[FMxAI 2025](https://sites.google.com/view/fmxai2025)**
-- **[Cookbook](https://recipes.for-all.dev)**
-- **[DC AI Security Reading Group](https://aisecurity.forum/dc-reading-group-26)**
-- **[Cruxes for AI Control via Proof Carrying Code](https://www.lesswrong.com/s/f9ewpmtz8AogLxvqx)**
+- **[FMxAI](https://fmxai.org)**
 
 ### Organizations
 
