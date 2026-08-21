@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { Markdown } from '../lib/markdown'
 import { getPost } from '../lib/posts'
+import { WyrmRule } from '../components/WyrmRule'
 
 export function Post() {
   const { slug } = useParams<{ slug: string }>()
@@ -18,7 +19,7 @@ export function Post() {
       </p>
       <p className="theorem-date">dated {post.date}</p>
       <p className="theorem-title">{post.title}</p>
-      <hr />
+      <WyrmRule className="wyrm-rule" />
       <p className="proof-label">proof.</p>
       <div className="proof-body">
         <Markdown source={post.content} />

@@ -1,23 +1,42 @@
 :root {
-  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
 
-  --ink: #0b0a12;
-  --ink-raised: #131120;
-  --paper: #f1eef7;
-  --muted: #a49bb8;
-  --rule: #2a2438;
-  --accent: #9b5cff;
-  --accent-dim: rgba(155, 92, 255, 0.12);
-  --accent-soft: rgba(155, 92, 255, 0.5);
+  --paper: #ece0c4;
+  --paper-raised: #dbc48d;
+  --paper-deep: #c9ae76;
+  --ink: #2b1d10;
+  --ink-muted: #6b5636;
+  --rule: #b39a67;
+  --accent: #9c2b20;
+  --accent-soft: rgba(156, 43, 32, 0.15);
+  --gold: #a9761f;
+  --gold-soft: rgba(169, 118, 31, 0.16);
 
-  color-scheme: dark;
-  color: var(--paper);
-  background: var(--ink);
+  color-scheme: light;
+  color: var(--ink);
+  background: var(--paper);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --paper: #1c140c;
+    --paper-raised: #26190f;
+    --paper-deep: #302012;
+    --ink: #ecdfc0;
+    --ink-muted: #b3a184;
+    --rule: #4a3a22;
+    --accent: #d1554a;
+    --accent-soft: rgba(209, 85, 74, 0.18);
+    --gold: #cf9f3f;
+    --gold-soft: rgba(207, 159, 63, 0.16);
+  }
 }
 
 * {
@@ -32,11 +51,18 @@ body {
 }
 
 body {
-  font-family: var(--font-sans);
-  font-size: 17px;
+  font-family: var(--font-body);
+  font-size: 19px;
   line-height: 1.65;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+  background-image: radial-gradient(
+      ellipse 60% 40% at 15% 8%,
+      var(--paper-deep) 0%,
+      transparent 60%
+    ),
+    radial-gradient(ellipse 50% 35% at 90% 70%, var(--paper-deep) 0%, transparent 65%);
+  background-attachment: fixed;
 }
 
 #root {
@@ -44,7 +70,7 @@ body {
 }
 
 a {
-  color: var(--paper);
+  color: var(--ink);
   text-decoration: none;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
@@ -71,18 +97,19 @@ pre {
 }
 
 code {
-  background: var(--ink-raised);
+  background: var(--paper-raised);
   border: 1px solid var(--rule);
   border-radius: 3px;
   padding: 0.1em 0.4em;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 pre {
-  background: var(--ink-raised);
+  position: relative;
+  background: var(--paper-raised);
   border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 16px 18px;
+  border-radius: 2px;
+  padding: 18px;
   overflow-x: auto;
 }
 
@@ -92,45 +119,42 @@ pre code {
   padding: 0;
 }
 
-pre {
-  position: relative;
-}
-
 pre[data-lang]::before {
   content: attr(data-lang);
   position: absolute;
   top: -1px;
-  right: -1px;
+  right: 14px;
+  font-family: var(--font-display);
   font-size: 11px;
-  color: var(--muted);
-  background: var(--ink-raised);
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  background: var(--paper);
   border: 1px solid var(--rule);
-  border-top-right-radius: 6px;
-  border-bottom-left-radius: 6px;
-  padding: 2px 8px;
-  letter-spacing: 0.03em;
+  border-top: none;
+  padding: 2px 8px 3px;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
   line-height: 1.3;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 30px;
 }
 h2 {
-  font-size: 22px;
+  font-size: 23px;
 }
 h3 {
   font-size: 18px;
   color: var(--accent);
+  letter-spacing: 0.03em;
 }
 h4 {
   font-size: 16px;
@@ -139,8 +163,8 @@ h4 {
 .proof-body h2,
 .proof-body h3,
 .proof-body h4 {
-  border-left: 2px solid var(--rule);
-  padding-left: 12px;
+  border-left: 3px solid var(--gold);
+  padding-left: 14px;
   margin: 1.4em 0 0.7em;
 }
 .proof-body > h2:first-child,
@@ -172,45 +196,48 @@ h4 {
 }
 .proof-body ol.premises li {
   counter-increment: premise;
-  padding-left: 2.2em;
+  padding-left: 2.6em;
   position: relative;
 }
 .proof-body ol.premises li::before {
-  content: '(' counter(premise) ')';
+  content: counter(premise, upper-roman) '.';
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 0.9em;
+  font-family: var(--font-display);
+  font-size: 0.85em;
 }
 
 .proof-body blockquote.note {
-  margin: 0 0 1em;
-  padding: 0.85em 1em 0.9em;
+  margin: 0 0 1.4em;
+  padding: 1.1em 1.3em 1.2em;
   border: 1px solid var(--rule);
-  border-left: 2px solid var(--accent);
-  border-radius: 0 4px 4px 0;
-  background: var(--ink-raised);
-  color: var(--muted);
+  border-left: 3px solid var(--accent);
+  background: var(--paper-raised);
+  color: var(--ink-muted);
 }
 .proof-body blockquote.note::before {
   content: 'note.';
   display: block;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.05em;
   color: var(--accent);
-  margin-bottom: 0.4em;
+  margin-bottom: 0.5em;
 }
 .proof-body blockquote.note p {
   margin: 0;
+  font-style: italic;
 }
 
 .proof-body img {
-  max-width: 100%;
-  border-radius: 6px;
   display: block;
-  margin: 1em 0;
+  max-width: 100%;
+  margin: 1.5em auto;
+  padding: 10px;
+  background: var(--paper-raised);
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--rule);
 }
 
 /* --- inline signature moves: external links, footnotes --- */
@@ -225,53 +252,67 @@ h4 {
 }
 
 .footnote-ref {
-  font-family: var(--font-mono);
-  font-size: 0.75em;
-  padding: 0 0.15em;
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 0.8em;
+  padding: 0 0.1em;
   border-bottom: none;
 }
 
 .proof-body .notes {
-  margin-top: 2em;
-  padding-top: 1em;
+  margin-top: 2.2em;
+  padding-top: 1.1em;
   border-top: 1px solid var(--rule);
 }
 .notes-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-style: italic;
-  color: var(--muted);
-  margin: 0 0 0.6em;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  margin: 0 0 0.7em;
 }
 .footnote-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  counter-reset: footnote;
-  font-size: 14px;
-  color: var(--muted);
+  font-size: 16px;
+  color: var(--ink-muted);
 }
 .footnote-list li {
-  counter-increment: footnote;
-  padding-left: 1.8em;
-  position: relative;
   margin-bottom: 0.5em;
 }
-.footnote-list li::before {
-  content: counter(footnote) '.';
-  position: absolute;
-  left: 0;
-  font-family: var(--font-mono);
+.footnote-mark {
+  font-family: var(--font-display);
   color: var(--accent);
+  margin-right: 0.2em;
 }
 .footnote-back {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
+  border-bottom: none;
 }
 
-.proof-body hr {
-  border: none;
-  border-top: 1px solid var(--rule);
+.proof-body .wyrm-rule {
   margin: 1.5em 0;
+  color: var(--rule);
+}
+
+/* --- wyrm rule (castle/serpent divider motif) --- */
+
+.wyrm-rule {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--gold);
+}
+
+.wyrm-rule-header {
+  margin: 4px 0 8px;
+  color: var(--rule);
+  opacity: 0.85;
+}
+
+.theorem .wyrm-rule {
+  margin: 0 0 22px;
 }
 
 /* --- layout shell --- */
@@ -292,8 +333,8 @@ h4 {
   left: 50%;
   width: min(1500px, 200vw);
   height: auto;
-  color: var(--accent);
-  opacity: 0.09;
+  color: var(--ink);
+  opacity: 0.06;
   transform: translateX(-50%);
   pointer-events: none;
   user-select: none;
@@ -305,6 +346,24 @@ h4 {
   }
 }
 
+/* --- battlement (castle motif) --- */
+
+.battlement {
+  height: 10px;
+  flex: none;
+  background: var(--ink);
+  opacity: 0.55;
+  clip-path: polygon(
+    0% 100%, 0% 0%, 12.5% 0%, 12.5% 50%, 25% 50%, 25% 0%, 37.5% 0%,
+    37.5% 50%, 50% 50%, 50% 0%, 62.5% 0%, 62.5% 50%, 75% 50%, 75% 0%,
+    87.5% 0%, 87.5% 50%, 100% 50%, 100% 100%
+  );
+  transform: scaleY(-1);
+}
+.battlement.battlement-bottom {
+  transform: none;
+}
+
 /* --- header --- */
 
 .site-header {
@@ -312,7 +371,7 @@ h4 {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 40px 0 28px;
+  padding: 36px 0 28px;
 }
 
 .wordmark {
@@ -329,19 +388,21 @@ h4 {
 }
 
 .wordmark-domain {
-  font-family: var(--font-mono);
-  font-size: 16px;
-  color: var(--paper);
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.02em;
 }
 
 .site-nav {
-  font-family: var(--font-mono);
-  font-size: 14px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.02em;
 }
 
 .site-nav a {
-  color: var(--muted);
+  color: var(--ink-muted);
 }
 .site-nav a:hover {
   color: var(--accent);
@@ -359,35 +420,31 @@ h4 {
 }
 
 .turnstile {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 14px;
+  font-weight: 600;
   color: var(--accent);
   margin: 0 0 14px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .turnstile span {
-  margin-right: 2px;
+  margin-right: 6px;
+  font-size: 1.3em;
+  vertical-align: -0.08em;
 }
 
 .proof-body {
-  color: var(--paper);
+  color: var(--ink);
 }
 
 .qed {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 40px 0;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 13px;
+  margin: 44px 0;
 }
 
-.qed span:not(.qed-mark) {
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
+.qed .wyrm-rule {
+  color: var(--rule);
 }
 
 /* --- team --- */
@@ -398,7 +455,7 @@ h4 {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 28px;
+  gap: 32px;
 }
 
 .team-member {
@@ -411,28 +468,31 @@ h4 {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid var(--rule);
-  margin-bottom: 10px;
-  filter: grayscale(0.35);
+  border: 4px double var(--gold);
+  padding: 4px;
+  background: var(--paper);
+  margin-bottom: 12px;
+  filter: sepia(0.5) saturate(1.15) contrast(0.97);
 }
 
 .team-name {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 15px;
-  color: var(--paper);
+  font-weight: 600;
+  color: var(--ink);
   margin: 0;
 }
 
 .team-role {
-  font-size: 13px;
+  font-size: 14px;
+  font-style: italic;
   color: var(--accent);
   margin: 0 0 6px;
 }
 
 .team-bio {
-  font-size: 14px;
-  color: var(--muted);
+  font-size: 15px;
+  color: var(--ink-muted);
 }
 .team-bio p {
   margin: 0;
@@ -461,15 +521,15 @@ h4 {
 }
 
 .post-date {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 13px;
-  color: var(--muted);
+  color: var(--ink-muted);
   flex: none;
-  padding-top: 0.1em;
+  padding-top: 0.2em;
 }
 
 .post-title {
-  color: var(--paper);
+  color: var(--ink);
 }
 
 .post-list a:hover .post-title {
@@ -479,14 +539,30 @@ h4 {
 /* --- theorem (post detail) --- */
 
 .theorem {
-  padding: 8px 0 40px;
+  --deckle: polygon(
+    0% 0%, 3% 1.4%, 6% 0%, 9% 1.4%, 12% 0%, 15% 1.4%, 18% 0%, 21% 1.4%,
+    24% 0%, 27% 1.4%, 30% 0%, 33% 1.4%, 36% 0%, 39% 1.4%, 42% 0%, 45% 1.4%,
+    48% 0%, 51% 1.4%, 54% 0%, 57% 1.4%, 60% 0%, 63% 1.4%, 66% 0%, 69% 1.4%,
+    72% 0%, 75% 1.4%, 78% 0%, 81% 1.4%, 84% 0%, 87% 1.4%, 90% 0%, 93% 1.4%,
+    96% 0%, 99% 1.4%, 100% 0%,
+    100% 100%, 97% 98.6%, 94% 100%, 91% 98.6%, 88% 100%, 85% 98.6%, 82% 100%,
+    79% 98.6%, 76% 100%, 73% 98.6%, 70% 100%, 67% 98.6%, 64% 100%, 61% 98.6%,
+    58% 100%, 55% 98.6%, 52% 100%, 49% 98.6%, 46% 100%, 43% 98.6%, 40% 100%,
+    37% 98.6%, 34% 100%, 31% 98.6%, 28% 100%, 25% 98.6%, 22% 100%, 19% 98.6%,
+    16% 100%, 13% 98.6%, 10% 100%, 7% 98.6%, 4% 100%, 1% 98.6%, 0% 100%
+  );
+  clip-path: var(--deckle);
+  margin: 8px 0 40px;
+  padding: 40px clamp(20px, 5vw, 56px) 52px;
+  background: var(--paper-raised);
+  box-shadow: 0 1px 0 var(--rule) inset, 0 18px 40px -24px rgba(43, 29, 16, 0.35);
 }
 
 .back-link {
   display: inline-block;
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 13px;
-  color: var(--muted);
+  color: var(--ink-muted);
   text-decoration: none;
   margin-bottom: 28px;
 }
@@ -495,40 +571,39 @@ h4 {
 }
 
 .theorem-head {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--accent);
   margin: 0 0 4px;
 }
 
 .theorem .slug {
-  color: var(--paper);
+  color: var(--ink);
 }
 
 .theorem-date {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--muted);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-muted);
   margin: 0 0 18px;
 }
 
 .theorem-title {
-  font-family: var(--font-mono);
-  font-size: 24px;
-  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--ink);
   margin: 0 0 18px;
 }
 
-.theorem hr {
-  border: none;
-  border-top: 1px solid var(--rule);
-  margin: 0 0 22px;
-}
 
 .proof-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 13px;
-  color: var(--muted);
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
   font-style: italic;
   margin: 0 0 14px;
 }
@@ -536,21 +611,35 @@ h4 {
 .theorem-qed {
   text-align: right;
   margin-top: 24px;
-  color: var(--muted);
-  font-family: var(--font-mono);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 18px;
 }
 
 /* --- footer --- */
 
+.wyrm-rule-footer {
+  margin-top: 12px;
+  color: var(--rule);
+}
+
 .site-footer {
-  border-top: 1px solid var(--rule);
-  padding: 20px 0 40px;
-  font-size: 13px;
-  color: var(--muted);
+  padding: 16px 0 40px;
+  font-size: 14px;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+.site-footer .seal {
+  width: 34px;
+  height: 34px;
+  color: var(--gold);
+  margin: 0 auto 12px;
+  display: block;
 }
 
 .site-footer a {
-  color: var(--muted);
+  color: var(--ink-muted);
 }
 .site-footer a:hover {
   color: var(--accent);
@@ -563,10 +652,13 @@ h4 {
     padding: 0 18px;
   }
   h1 {
-    font-size: 22px;
+    font-size: 24px;
   }
   .theorem-title {
-    font-size: 20px;
+    font-size: 21px;
+  }
+  .theorem {
+    padding: 32px 20px 40px;
   }
   .bg-mark {
     width: min(1100px, 320vw);

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { WyrmRule } from '../components/WyrmRule'
 
 // A small, purpose-built markdown renderer — not a CommonMark implementation.
 // It covers exactly the shapes our own content uses, and a few signature
@@ -15,13 +16,18 @@ interface Footnotes {
 const INLINE_RE =
   /\[!\[([^\]]*)\]\(([^)\s]+)\)\]\(([^)\s]+)\)|!\[([^\]]*)\]\(([^)\s]+)\)|\[\^([^\]]+)\]|\[([^\]]*)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*|`([^`]+)`|\*([^*]+)\*|_([^_]+)_/g
 
-function footnoteNumber(id: string, notes: Footnotes): number {
+// Old-book footnote marks (*, †, ‡, §, ‖) instead of numerals, doubling up
+// past the fifth reference rather than falling back to digits.
+const FOOTNOTE_MARKS = ['*', '†', '‡', '§', '‖']
+
+function footnoteMark(id: string, notes: Footnotes): string {
   let idx = notes.order.indexOf(id)
   if (idx === -1) {
     notes.order.push(id)
     idx = notes.order.length - 1
   }
-  return idx + 1
+  const mark = FOOTNOTE_MARKS[idx % FOOTNOTE_MARKS.length]
+  return mark.repeat(Math.floor(idx / FOOTNOTE_MARKS.length) + 1)
 }
 
 function parseInline(text: string, notes: Footnotes): ReactNode[] {
@@ -59,7 +65,7 @@ function parseInline(text: string, notes: Footnotes): ReactNode[] {
     } else if (imgSrc !== undefined) {
       nodes.push(<img key={key++} src={imgSrc} alt={imgAlt} loading="lazy" />)
     } else if (footnoteId !== undefined) {
-      const n = footnoteNumber(footnoteId, notes)
+      const mark = footnoteMark(footnoteId, notes)
       nodes.push(
         <sup key={key++}>
           <a
@@ -67,7 +73,7 @@ function parseInline(text: string, notes: Footnotes): ReactNode[] {
             id={`fnref-${footnoteId}`}
             className="footnote-ref"
           >
-            {n}
+            {mark}
           </a>
         </sup>,
       )
@@ -161,7 +167,7 @@ function parseMarkdown(source: string): ReactNode[] {
     }
 
     if (RULE_RE.test(line.trim())) {
-      blocks.push(<hr key={key++} />)
+      blocks.push(<WyrmRule key={key++} className="wyrm-rule" />)
       i++
       continue
     }
@@ -233,9 +239,10 @@ function parseMarkdown(source: string): ReactNode[] {
     blocks.push(
       <div className="notes" key={key}>
         <p className="notes-label">notes.</p>
-        <ol className="footnote-list">
+        <ul className="footnote-list">
           {notes.order.map((id) => (
             <li key={id} id={`fn-${id}`}>
+              <span className="footnote-mark">{footnoteMark(id, notes)}</span>{' '}
               {parseInline(notes.defs.get(id) ?? '', notes)}{' '}
               <a
                 href={`#fnref-${id}`}
@@ -246,7 +253,7 @@ function parseMarkdown(source: string): ReactNode[] {
               </a>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>,
     )
   }

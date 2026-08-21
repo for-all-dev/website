@@ -1,1 +1,1 @@
-**Forall R&D is responsible for helping AI safety businesses and nonprofits navigate the formal methods explosion**.
+**Forall R&D is responsible for guiding AI safety orgs through the formal methods explosion**.
