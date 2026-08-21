@@ -1,77 +1,44 @@
-# React + TypeScript + Vite
+# for-all.dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Forall R&D website — parchment, rubrication, wyrms, and a castle wall.
+React + TypeScript on Vite, run with [bun](https://bun.sh).
 
-Currently, two official plugins are available:
+## Develop
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+bun install
+bun dev          # dev server with HMR at http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+No more `python -m http.server` — Vite serves everything, including the
+markdown content, which is bundled at build time.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Build & check
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+bun run build    # tsc -b && vite build → dist/
+bun run preview  # serve the production build locally
+bun run lint     # eslint
 ```
+
+## Content
+
+Posts and pages are markdown with YAML frontmatter:
+
+- `src/content/posts/YYYY-MM-DD-slug.md` — served at `/p/slug`
+- `src/content/pages/*.md` — sections of the home page
+
+They're rendered by our own small renderer (`src/lib/markdown.tsx`) — not
+CommonMark, just the shapes our content uses, plus the signature moves:
+`>` quotes become parchment scrolls, headings get cheese-shield anchors,
+ordered lists enumerate as proof premises, footnotes (`[^id]`) collect into
+an old-book endnote block, fenced code is an incantation.
+
+The recurring SVG primitives (shield of swiss cheese, wax seal, wyrm rule,
+scroll rolls) live in `src/components/`.
+
+## Deploy
+
+Static output in `dist/`, served by nginx on the server (config in
+`operations/nginx-website.conf`, root `/home/quinn/website/dist`). Build and
+sync `dist/` to the server.

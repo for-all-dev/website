@@ -1,5 +1,5 @@
 ---
-title: Formal Confinement Prototype
+title: Formal confinement prototype
 ---
 
 _Linkpost: **[formal-confinement.pdf](/papers/formal-confinement.pdf)**, from Summer 2025. Comment on [lw](https://www.lesswrong.com/s/f9ewpmtz8AogLxvqx/p/yZvrRWM5DE58CzHpZ)_.

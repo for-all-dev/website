@@ -1,10 +1,13 @@
 import type { ReactNode } from 'react'
 import { WyrmRule } from '../components/WyrmRule'
+import { CheeseShield } from '../components/CheeseShield'
+import { ScrollRoll } from '../components/ScrollRoll'
 
 // A small, purpose-built markdown renderer — not a CommonMark implementation.
 // It covers exactly the shapes our own content uses, and a few signature
-// moves that lean into the site's proof-script aesthetic: blockquotes read
-// as "note." remarks, ordered lists enumerate like proof premises, fenced
+// moves that lean into the site's proof-script aesthetic: blockquotes render
+// as "note." parchment scrolls, headings carry cheese-shield deep-link
+// anchors, ordered lists enumerate like proof premises, fenced
 // code can carry a language tag, external links get a trailing arrow, and
 // footnotes collect into a "notes." endnote block.
 
@@ -106,6 +109,24 @@ function parseInline(text: string, notes: Footnotes): ReactNode[] {
   return nodes
 }
 
+// Heading ids for deep links. The anchor glyph is the cheese-shield crest
+// rather than the usual pilcrow/section sign.
+function slugify(text: string, used: Set<string>): string {
+  const base =
+    text
+      .replace(/\[\^[^\]]+\]/g, '')
+      .replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1')
+      .replace(/[*_`]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'section'
+  let slug = base
+  let n = 2
+  while (used.has(slug)) slug = `${base}-${n++}`
+  used.add(slug)
+  return slug
+}
+
 const HEADING_RE = /^(#{1,4})\s+(.*)$/
 const RULE_RE = /^(-{3,}|\*{3,}|_{3,})\s*$/
 const QUOTE_RE = /^>\s?(.*)$/
@@ -130,6 +151,7 @@ function parseMarkdown(source: string): ReactNode[] {
   }
 
   const blocks: ReactNode[] = []
+  const usedSlugs = new Set<string>()
   let i = 0
   let key = 0
 
@@ -161,7 +183,19 @@ function parseMarkdown(source: string): ReactNode[] {
     if (heading) {
       const level = heading[1].length
       const Tag = (`h${level}` as unknown) as 'h1'
-      blocks.push(<Tag key={key++}>{parseInline(heading[2], notes)}</Tag>)
+      const slug = slugify(heading[2], usedSlugs)
+      blocks.push(
+        <Tag key={key++} id={slug}>
+          {parseInline(heading[2], notes)}
+          <a
+            href={`#${slug}`}
+            className="heading-anchor"
+            aria-label="Link to this section"
+          >
+            <CheeseShield className="heading-anchor-shield" />
+          </a>
+        </Tag>,
+      )
       i++
       continue
     }
@@ -180,7 +214,16 @@ function parseMarkdown(source: string): ReactNode[] {
       }
       blocks.push(
         <blockquote key={key++} className="note">
-          <p>{parseInline(quoted.join(' '), notes)}</p>
+          <ScrollRoll className="scroll-roll scroll-roll-top" />
+          <div className="scroll-sheet-wrap">
+            <div className="scroll-sheet">
+              <span className="scroll-rubric" aria-hidden="true">
+                note.
+              </span>
+              <p>{parseInline(quoted.join(' '), notes)}</p>
+            </div>
+          </div>
+          <ScrollRoll className="scroll-roll scroll-roll-bottom" />
         </blockquote>,
       )
       continue
