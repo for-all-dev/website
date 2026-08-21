@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import { LogoMark } from "./LogoMark";
 import { WaxSeal } from "./WaxSeal";
 import { WyrmRule } from "./WyrmRule";
+import { Signature } from "./Signature";
 
 export function Layout() {
     return (
@@ -20,6 +21,11 @@ export function Layout() {
                         <LogoMark className="wordmark-mark" />
                         <span className="wordmark-domain">for-all.dev</span>
                     </Link>
+                    <div className="crest" aria-hidden="true">
+                        <WaxSeal className="crest-seal" />
+                        <Signature className="crest-signature" />
+                        <WaxSeal className="crest-seal" />
+                    </div>
                     <nav className="site-nav">
                         <a href="https://tractable.for-all.dev">
                             Tractable Problems ↗
@@ -36,7 +42,11 @@ export function Layout() {
                 <WyrmRule className="wyrm-rule wyrm-rule-footer" />
 
                 <footer className="site-footer">
-                    <WaxSeal className="seal" />
+                    <div className="crest" aria-hidden="true">
+                        <WaxSeal className="crest-seal" />
+                        <Signature className="crest-signature" />
+                        <WaxSeal className="crest-seal" />
+                    </div>
                     <p>
                         for-all.dev — guiding AI safety orgs through the formal
                         methods explosion.{" "}

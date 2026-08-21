@@ -367,9 +367,9 @@ h4 {
 /* --- header --- */
 
 .site-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
   padding: 36px 0 28px;
 }
@@ -378,6 +378,34 @@ h4 {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-self: start;
+}
+
+/* --- crest (wax seal + signature, header and footer) --- */
+
+.crest {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-header .crest {
+  justify-self: center;
+}
+
+.crest-seal {
+  width: 26px;
+  height: 26px;
+  color: var(--gold);
+  flex: none;
+}
+
+.crest-signature {
+  height: 22px;
+  width: auto;
+  color: var(--ink);
+  opacity: 0.85;
+  flex: none;
 }
 
 .wordmark-mark {
@@ -399,6 +427,7 @@ h4 {
   font-family: var(--font-display);
   font-size: 13px;
   letter-spacing: 0.02em;
+  justify-self: end;
 }
 
 .site-nav a {
@@ -630,12 +659,16 @@ h4 {
   text-align: center;
 }
 
-.site-footer .seal {
+.site-footer .crest {
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+.site-footer .crest-seal {
   width: 34px;
   height: 34px;
-  color: var(--gold);
-  margin: 0 auto 12px;
-  display: block;
+}
+.site-footer .crest-signature {
+  height: 26px;
 }
 
 .site-footer a {
@@ -662,5 +695,8 @@ h4 {
   }
   .bg-mark {
     width: min(1100px, 320vw);
+  }
+  .site-header .crest {
+    display: none;
   }
 }
