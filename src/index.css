@@ -694,7 +694,11 @@ h4 {
     padding: 32px 20px 40px;
   }
   .bg-mark {
-    width: min(1100px, 320vw);
+    width: min(640px, 92vw);
+  }
+  .site-header {
+    display: flex;
+    justify-content: space-between;
   }
   .site-header .crest {
     display: none;
