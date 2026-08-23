@@ -21,10 +21,17 @@ export function ScrollRoll({ className }: { className?: string }) {
           <stop offset="1" stopColor="var(--roll-lo)" />
         </linearGradient>
       </defs>
-      {/* cylinder body */}
+      {/* cylinder body: fill only — the left closing edge hides under the
+          curl, so the cylinder reads as open where it meets the spiral */}
       <path
-        d="M52,20 L614,20 Q628,20 628,33 Q628,46 614,46 L52,46 Z"
+        d="M44,20 L614,20 Q628,20 628,33 Q628,46 614,46 L34,46 Z"
         fill={`url(#${shadeId})`}
+      />
+      {/* cylinder outline: one open stroke, both ends terminating on the
+          curl's circumference (no vertical bar at the left end) */}
+      <path
+        d="M44,20 L614,20 Q628,20 628,33 Q628,46 614,46 L34,46"
+        fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinejoin="round"
@@ -52,29 +59,30 @@ export function ScrollRoll({ className }: { className?: string }) {
         strokeWidth="2"
         strokeLinecap="round"
       />
-      {/* the curled end, spiraling inward */}
+      {/* the curled end, spiraling inward; tangent to the cylinder's bottom
+          line so both horizontals run into its circumference */}
       <circle
         cx="32"
-        cy="27"
+        cy="29"
         r="17"
         fill="var(--paper-deep)"
         stroke="currentColor"
         strokeWidth="2"
       />
       <path
-        d="M46,19 A 14,14 0 1 0 41,38"
+        d="M46,21 A 14,14 0 1 0 41,40"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.6"
       />
       <path
-        d="M41,38 A 8,8 0 0 0 28,24"
+        d="M41,40 A 8,8 0 0 0 28,26"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.4"
       />
       <path
-        d="M28,24 A 5,5 0 0 1 36,26"
+        d="M28,26 A 5,5 0 0 1 36,28"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.2"
