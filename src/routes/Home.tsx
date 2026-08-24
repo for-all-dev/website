@@ -6,6 +6,8 @@ import { Markdown } from '../lib/markdown'
 import { Section, Qed } from '../components/Proof'
 import { posts } from '../lib/posts'
 import { staff } from '../lib/staff'
+import { clients } from '../lib/clients'
+import { ClientLogos } from '../components/ClientLogos'
 
 export function Home() {
   return (
@@ -19,6 +21,15 @@ export function Home() {
       <Section id="work" label="work">
         <Markdown source={workRaw} />
       </Section>
+
+      {clients.length > 0 && (
+        <>
+          <Qed />
+          <Section id="clients" label="banners">
+            <ClientLogos />
+          </Section>
+        </>
+      )}
 
       {staff.length > 0 && (
         <>
@@ -49,6 +60,12 @@ export function Home() {
         </>
       )}
 
+      <Qed />
+
+      <Section id="contact" label="contact">
+        <Markdown source={contactRaw} />
+      </Section>
+
       {posts.length > 0 && (
         <>
           <Qed />
@@ -66,12 +83,6 @@ export function Home() {
           </Section>
         </>
       )}
-
-      <Qed />
-
-      <Section id="contact" label="contact">
-        <Markdown source={contactRaw} />
-      </Section>
     </>
   )
 }
