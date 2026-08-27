@@ -3,6 +3,15 @@ import { useId } from 'react'
 // One rolled end of a parchment scroll: a shaded cylinder with the sheet
 // curling off into a spiral at the left. Rendered twice per blockquote —
 // the bottom copy is rotated 180° in CSS so its curl faces the other way.
+// The right end's lower corner (y=46, the edge nearest the sheet) is a flat,
+// sharp cut lined up with the scroll-sheet's own edge beneath it (see the
+// .scroll-roll/.scroll-sheet-wrap geometry in index.css), so the two form
+// one continuous flush line. The upper corner (y=20, facing away from the
+// sheet) stays rounded, like the tube's far surface still showing at the
+// cut while its underside sits flush on the page. The bottom copy's 180°
+// rotation swaps which physical edge is which — the corner nearest ITS
+// sheet-facing side is still the flush one, the outward-facing side still
+// the rounded one — so both copies read the same way.
 export function ScrollRoll({ className }: { className?: string }) {
   // useId's colons are invalid in url(#...) fragment references
   const shadeId = `roll-shade-${useId().replace(/[^a-zA-Z0-9-]/g, '')}`
@@ -22,26 +31,21 @@ export function ScrollRoll({ className }: { className?: string }) {
         </linearGradient>
       </defs>
       {/* cylinder body: fill only — the left closing edge hides under the
-          curl, so the cylinder reads as open where it meets the spiral */}
+          curl, so the cylinder reads as open where it meets the spiral. The
+          right edge rounds over at the top and cuts flat at the bottom. */}
       <path
-        d="M44,20 L614,20 Q628,20 628,33 Q628,46 614,46 L34,46 Z"
+        d="M44,20 L585,20 Q613,20 613,46 L34,46 Z"
         fill={`url(#${shadeId})`}
       />
-      {/* cylinder outline: one open stroke, both ends terminating on the
-          curl's circumference (no vertical bar at the left end) */}
+      {/* cylinder outline: one open stroke — rounded/flat at the right,
+          terminating on the curl's circumference at the left (no vertical
+          bar there) */}
       <path
-        d="M44,20 L614,20 Q628,20 628,33 Q628,46 614,46 L34,46"
+        d="M44,20 L585,20 Q613,20 613,46 L34,46"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinejoin="round"
-      />
-      {/* right end cap: rolled edge peeking */}
-      <path
-        d="M614,20 Q602,20 602,33 Q602,46 614,46"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
       />
       {/* wrap ticks along the cylinder */}
       <path
