@@ -14,6 +14,10 @@
   --gold: #a9761f;
   --gold-soft: rgba(169, 118, 31, 0.16);
 
+  /* mounting board for client logos: always a light, warm ground so
+     dark-on-transparent wordmarks stay legible in either scheme */
+  --plaque: #f3e9d1;
+
   /* scroll-roll cylinder shading, light falling from above */
   --roll-hi: var(--paper);
   --roll-mid: var(--paper-raised);
@@ -41,6 +45,9 @@
     --accent-soft: rgba(209, 85, 74, 0.18);
     --gold: #cf9f3f;
     --gold-soft: rgba(207, 159, 63, 0.16);
+
+    /* aged vellum rather than white, so the plaques don't glare at night */
+    --plaque: #c8b184;
 
     /* in dark mode --paper is the darkest tone, so re-point the roll
        shading to keep the highlight on top */
@@ -288,6 +295,79 @@ h4 {
   background: var(--paper-raised);
   border: 1px solid var(--gold);
   box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--rule);
+}
+
+/* --- tables: a ledger, ruled in gold --- */
+
+.proof-body .table-wrap {
+  overflow-x: auto;
+  margin: 0 0 1em;
+}
+.proof-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92em;
+}
+.proof-body th,
+.proof-body td {
+  padding: 0.55em 0.9em;
+  text-align: left;
+  vertical-align: top;
+}
+.proof-body th:first-child,
+.proof-body td:first-child {
+  padding-left: 0;
+}
+.proof-body th:last-child,
+.proof-body td:last-child {
+  padding-right: 0;
+}
+.proof-body thead th {
+  font-family: var(--font-display);
+  font-size: 0.76em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  border-bottom: 2px solid var(--gold);
+  white-space: nowrap;
+}
+.proof-body tbody td {
+  border-bottom: 1px solid var(--rule);
+}
+.proof-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* row numerals, same upper-roman/accent treatment as ol.premises */
+.proof-body tbody {
+  counter-reset: row-index;
+}
+.proof-body tbody tr {
+  counter-increment: row-index;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.proof-body td.row-index,
+.proof-body th.row-index {
+  width: 1px;
+  padding-right: 0.7em;
+  padding-left: 0;
+}
+.proof-body td.row-index {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.8em;
+  text-align: right;
+  white-space: nowrap;
+}
+.proof-body td.row-index::before {
+  content: counter(row-index, upper-roman) '.';
+}
+
+/* illuminated row: a scribe's highlight while reading down the ledger */
+.proof-body tbody tr:hover {
+  background: var(--gold-soft);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 /* --- illuminated drop cap on a proof's opening paragraph --- */
@@ -648,6 +728,180 @@ h4:hover .heading-anchor,
 }
 .team-bio p {
   margin: 0;
+}
+
+/* --- clientele (logo marquee) --- */
+
+.client-marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 4px 0 2px;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 52px,
+    #000 calc(100% - 52px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 52px,
+    #000 calc(100% - 52px),
+    transparent 100%
+  );
+}
+
+.client-track {
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+  animation: client-drift var(--marquee-duration, 35s) linear infinite;
+}
+
+.client-marquee:hover .client-track,
+.client-marquee:focus-within .client-track {
+  animation-play-state: paused;
+}
+
+/* spacing lives in margin, not gap, so one roster is exactly
+   100% / reps of the track and the loop seam is invisible */
+.client-slot {
+  flex: none;
+  margin-right: 26px;
+}
+
+.client-plaque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  width: 156px;
+  color: var(--ink-muted);
+  border-bottom: none;
+}
+
+.proof-body .client-plaque {
+  border-bottom: none;
+}
+
+.client-plaque-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 86px;
+  padding: 12px 16px;
+  background: var(--plaque);
+  border: 4px double var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold-soft);
+}
+
+/* two classes deep so it outranks `.proof-body img`, which frames prose
+   figures in a bordered, paper-backed mat we do not want here */
+.client-plaque-frame .client-logo {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: sepia(0.5) saturate(0.85) contrast(0.95);
+  opacity: 0.86;
+  transition: filter 0.25s ease, opacity 0.25s ease;
+}
+
+/* for assets drawn light-on-transparent (dark-mode wordmarks): flip them
+   down onto the light plaque. Set `invert: true` in the client's frontmatter. */
+.client-logo.is-inverted {
+  filter: invert(1) hue-rotate(180deg) sepia(0.5) saturate(0.85) contrast(0.95);
+}
+
+.client-plaque:hover .client-logo,
+.client-plaque:focus-visible .client-logo {
+  filter: none;
+  opacity: 1;
+}
+
+.client-plaque:hover .client-logo.is-inverted,
+.client-plaque:focus-visible .client-logo.is-inverted {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.client-name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+  color: var(--ink-muted);
+}
+
+.client-plaque:hover .client-name,
+.client-plaque:focus-visible .client-name {
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .client-marquee {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 26px,
+      #000 calc(100% - 26px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 26px,
+      #000 calc(100% - 26px),
+      transparent 100%
+    );
+  }
+  .client-plaque {
+    width: 132px;
+  }
+  .client-plaque-frame {
+    height: 76px;
+    padding: 10px 12px;
+  }
+  .client-slot {
+    margin-right: 20px;
+  }
+  .client-name {
+    font-size: 11px;
+  }
+}
+
+@keyframes client-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-1 * var(--marquee-shift, 50%)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-track {
+    animation: none;
+  }
+  /* no drift: let the rail be scrolled by hand, one copy of the roster only */
+  .client-marquee {
+    overflow-x: auto;
+  }
+  .client-slot[aria-hidden='true'] {
+    display: none;
+  }
 }
 
 /* --- post log / index --- */

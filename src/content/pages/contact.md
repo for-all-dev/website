@@ -1,4 +1,4 @@
-## Let us know how we can help
+## Here to help, low bar for reaching out
 
 `quinn@for-all.dev`
 

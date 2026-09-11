@@ -134,6 +134,31 @@ const BULLET_RE = /^\s*[-*]\s+(.*)$/
 const ORDERED_RE = /^\s*\d+\.\s+(.*)$/
 const FENCE_RE = /^```(\S*)\s*$/
 const FOOTNOTE_DEF_RE = /^\[\^([^\]]+)\]:\s?(.*)$/
+const TABLE_CELL_RE = /^:?-+:?$/
+
+type Align = 'left' | 'right' | 'center' | undefined
+
+function splitTableRow(line: string): string[] {
+  let s = line.trim()
+  if (s.startsWith('|')) s = s.slice(1)
+  if (s.endsWith('|')) s = s.slice(0, -1)
+  return s.split('|').map((cell) => cell.trim())
+}
+
+function tableSeparatorAligns(line: string): Align[] | null {
+  const cells = splitTableRow(line)
+  if (cells.length === 0 || !cells.every((cell) => TABLE_CELL_RE.test(cell))) {
+    return null
+  }
+  return cells.map((cell) => {
+    const left = cell.startsWith(':')
+    const right = cell.endsWith(':')
+    if (left && right) return 'center'
+    if (right) return 'right'
+    if (left) return 'left'
+    return undefined
+  })
+}
 
 function parseMarkdown(source: string): ReactNode[] {
   // Pull footnote definitions out first — they can live anywhere in the
@@ -259,6 +284,56 @@ function parseMarkdown(source: string): ReactNode[] {
         </ol>,
       )
       continue
+    }
+
+    if (line.trim().startsWith('|') && i + 1 < lines.length) {
+      const aligns = tableSeparatorAligns(lines[i + 1])
+      if (aligns) {
+        const headerCells = splitTableRow(line)
+        i += 2
+        const bodyRows: string[][] = []
+        while (i < lines.length && lines[i].trim().startsWith('|')) {
+          bodyRows.push(splitTableRow(lines[i]))
+          i++
+        }
+        blocks.push(
+          <div className="table-wrap" key={key++}>
+            <table>
+              <thead>
+                <tr>
+                  <th className="row-index" aria-hidden="true" />
+                  {headerCells.map((cell, idx) => (
+                    <th
+                      key={idx}
+                      style={aligns[idx] ? { textAlign: aligns[idx] } : undefined}
+                    >
+                      {parseInline(cell, notes)}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {bodyRows.map((row, rowIdx) => (
+                  <tr key={rowIdx}>
+                    <td className="row-index" aria-hidden="true" />
+                    {row.map((cell, cellIdx) => (
+                      <td
+                        key={cellIdx}
+                        style={
+                          aligns[cellIdx] ? { textAlign: aligns[cellIdx] } : undefined
+                        }
+                      >
+                        {parseInline(cell, notes)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>,
+        )
+        continue
+      }
     }
 
     const paragraph: string[] = []
