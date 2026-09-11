@@ -16,10 +16,10 @@ export function Layout() {
                     <Link
                         to="/"
                         className="wordmark"
-                        aria-label="for-all.dev home"
+                        aria-label="Forall R&D home"
                     >
                         <LogoMark className="wordmark-mark" />
-                        <span className="wordmark-domain">for-all.dev</span>
+                        <span className="wordmark-domain">Forall R&amp;D</span>
                     </Link>
                     <div className="crest" aria-hidden="true">
                         <WaxSeal className="crest-seal" />
@@ -48,7 +48,7 @@ export function Layout() {
                         <WaxSeal className="crest-seal" />
                     </div>
                     <p>
-                        for-all.dev — guiding AI safety orgs through the formal
+                        Forall R&amp;D — guiding AI safety orgs through the formal
                         methods explosion.{" "}
                         <a href="mailto:quinn@for-all.dev">quinn@for-all.dev</a>
                     </p>
