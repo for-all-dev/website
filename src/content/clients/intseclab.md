@@ -1,6 +1,6 @@
 ---
-name: Intelligence Security Lab
-url: https://intseclab.org/
-logo: /img/clients/intseclab.svg
+name: Intelligence Security Laboratories
+url: https://intelligencesecuritylaboratories.org/
+logo: /img/clients/intseclab.png
 order: 3
 ---
