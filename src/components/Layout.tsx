@@ -50,7 +50,7 @@ export function Layout() {
                     <p>
                         Forall R&amp;D — guiding AI safety orgs through the formal
                         methods explosion.{" "}
-                        <a href="mailto:quinn@for-all.dev">quinn@for-all.dev</a>
+                        <a href="mailto:hello@for-all.dev">hello@for-all.dev</a>
                     </p>
                 </footer>
 
