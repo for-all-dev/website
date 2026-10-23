@@ -39,6 +39,5 @@ scroll rolls) live in `src/components/`.
 
 ## Deploy
 
-Static output in `dist/`, served by nginx on the server (config in
-`operations/nginx-website.conf`, root `/home/quinn/website/dist`). Build and
-sync `dist/` to the server.
+Deployed on Vercel from `master`. `vercel.json` rewrites every path to
+`index.html` so client-side routes (`/p/:slug`) load directly.
