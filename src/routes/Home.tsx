@@ -68,12 +68,6 @@ export function Home() {
         <Markdown source={contactRaw} />
       </Section>
 
-      <Qed />
-
-      <Section id="comics">
-        <Markdown source={comicsRaw} />
-      </Section>
-
       {posts.length > 0 && (
         <>
           <Qed />
@@ -91,6 +85,12 @@ export function Home() {
           </Section>
         </>
       )}
+
+      <Qed />
+
+      <Section id="comics">
+        <Markdown source={comicsRaw} />
+      </Section>
     </>
   )
 }
