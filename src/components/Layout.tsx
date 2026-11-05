@@ -29,8 +29,12 @@ export function Layout() {
                     </div>
                     <nav className="site-nav">
                         <a href="https://tractable.for-all.dev">
-                            Tractable Problems ↗
+                            Tractable<span className="nav-long"> Problems</span> ↗
                         </a>
+                        <a href="/#contact" className="nav-contact">
+                            Contact
+                        </a>
+                        <WaxSeal className="crest-seal nav-seal" />
                     </nav>
                 </header>
 

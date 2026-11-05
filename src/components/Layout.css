@@ -50,3 +50,61 @@ body {
   -webkit-mask: url('/img/manicule.svg') no-repeat left center / contain;
   mask: url('/img/manicule.svg') no-repeat left center / contain;
 }
+
+/* Header: no crest (wax seals + signature) up top; the footer keeps its own.
+   On the right, Tractable Problems and a red outlined Contact link. */
+.site-header .crest {
+  display: none;
+}
+
+/* with the crest gone, two columns: wordmark left, links pushed right */
+.site-header {
+  grid-template-columns: auto 1fr;
+}
+
+.site-header .wordmark,
+.site-nav a {
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.site-nav a.nav-contact {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  padding: 1px 6px 0;
+  line-height: 1.5;
+}
+
+.site-nav a.nav-contact:hover {
+  color: var(--paper);
+  background: var(--accent);
+}
+
+/* in-page links (e.g. Contact) stop below the sticky header, not under it */
+section.proof {
+  scroll-margin-top: 80px;
+}
+
+/* phones: shorten to "Tractable ↗" so everything fits on one line */
+@media (max-width: 480px) {
+  .site-nav {
+    gap: 14px;
+  }
+  .site-nav .nav-long {
+    display: none;
+  }
+}
+
+/* the wax seal sits just right of Contact, the same height as its box */
+.site-nav .nav-seal {
+  flex: none;
+  width: 22.5px;
+  height: 22.5px;
+  margin-left: -10px; /* a little closer to Contact than the other links */
+}

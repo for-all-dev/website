@@ -181,3 +181,9 @@
 #log .turnstile > span {
   display: none;
 }
+
+/* Log entries: drop the link underline, which drew a second, shorter rule
+   under each entry on top of the full-width dividers. */
+#log .post-list a {
+  border-bottom: none;
+}
