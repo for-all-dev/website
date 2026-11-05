@@ -1,0 +1,23 @@
+/* Dragon section divider: slightly wider than the text column, so the
+   flames reach a little way into the margins. */
+.dragon-rule {
+  display: block;
+  width: 111%;
+  margin-left: -5.5%;
+  color: var(--rule);
+  opacity: 0.9;
+}
+
+.dragon-rule svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* on phones there's no margin to reach into, so keep it within the text */
+@media (max-width: 640px) {
+  .dragon-rule {
+    width: 100%;
+    margin-left: 0;
+  }
+}

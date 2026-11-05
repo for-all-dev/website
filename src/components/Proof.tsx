@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { WyrmRule } from './WyrmRule'
+import { DragonRule } from './DragonRule'
 
 export function Section({
   id,
@@ -25,7 +25,8 @@ export function Section({
 export function Qed() {
   return (
     <div className="qed" role="separator" aria-hidden="true">
-      <WyrmRule className="wyrm-rule qed-wyrm" />
+      {/* was: <WyrmRule className="wyrm-rule qed-wyrm" /> (import from './WyrmRule') */}
+      <DragonRule />
     </div>
   )
 }
