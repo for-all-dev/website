@@ -552,6 +552,7 @@ h4:hover .heading-anchor,
 /* --- battlement (castle motif) --- */
 
 .battlement {
+  display: none; /* hidden by Zoe; delete this line to restore */
   height: 10px;
   flex: none;
   background: var(--ink);
