@@ -69,3 +69,20 @@
     grid-row: 3;
   }
 }
+
+/* breathing room between the header and the opening line (About has no label) */
+#about {
+  padding-top: 24px;
+}
+
+/* Opening line: the red initial keeps its tight float box, but is lifted so
+   its bottom lines up with the first line of text, and its negative bottom
+   margin lets the second line run full width underneath it. */
+#about .proof-body > p:first-child {
+  padding-top: 20px;
+}
+
+#about .proof-body > p:first-child::first-letter {
+  padding: 0.1em 0.14em 0.02em;
+  margin: -15px 0.16em -0.3em 0;
+}

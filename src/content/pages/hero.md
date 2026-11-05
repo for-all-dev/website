@@ -1,3 +1,3 @@
-**Forall R&D is responsible for guiding AI safety orgs through the formal methods explosion**.
+**Forall R&D is guiding AI safety orgs through the formal methods explosion**.
 
-A research engineering consultancy. We can provide autoformalization and tooling for spec elicitation and validation.
+A research engineering consultancy. We build autoformalization pipelines and tools for writing and checking specifications.
