@@ -1,4 +1,14 @@
+import { DragonRule } from './DragonRule'
+
+/* Every serpent rule on the site (footer, posts, markdown `---`) now draws
+   the dragon instead. To bring the serpent back everywhere, make WyrmRule
+   return <SerpentRule className={className} /> again. */
 export function WyrmRule({ className }: { className?: string }) {
+  return <DragonRule className={className} />
+}
+
+/** The original serpent line, kept for reference. */
+export function SerpentRule({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 600 32"
