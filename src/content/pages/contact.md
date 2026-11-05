@@ -1,3 +1,3 @@
-## Here to help, low bar for reaching out
+### Here to help. Low bar for reaching out.
 
-`hello@for-all.dev`, including if you're an engineer and you think we'd get along and you want some hours with our client portfolio.
+Email [hello@for-all.dev](mailto:hello@for-all.dev) and tell us what you're trying to verify. If you're an engineer interested in working with us, please reach out!

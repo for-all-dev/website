@@ -104,3 +104,15 @@
     clear: left;
   }
 }
+
+/* Contact: heading a size up from the other subheads and in black; the
+   email link in the site's red. */
+#contact h3 {
+  font-size: 20px;
+  color: var(--ink);
+}
+
+#contact a[href^="mailto:"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}

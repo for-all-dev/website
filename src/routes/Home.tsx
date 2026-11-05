@@ -35,7 +35,7 @@ export function Home() {
 
       <Qed />
 
-      <Section id="contact" label="contact">
+      <Section id="contact">
         <Markdown source={contactRaw} />
       </Section>
 
