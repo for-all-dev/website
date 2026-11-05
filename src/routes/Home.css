@@ -116,3 +116,53 @@
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
+
+/* Team label: black pointing fist, larger red caps, then a dotted leader
+   that stops where the dragon's head begins in the divider above and ends
+   in one larger dot. */
+#team .turnstile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 25px;
+  letter-spacing: 0.09em;
+  margin-bottom: 24px;
+}
+
+#team .turnstile > span {
+  display: none;
+}
+
+#team .turnstile::before {
+  content: '';
+  flex: none;
+  width: 2.1em;
+  height: 1.13em;
+  background-color: var(--ink);
+  -webkit-mask: url('/img/manicule.svg') no-repeat center / contain;
+  mask: url('/img/manicule.svg') no-repeat center / contain;
+}
+
+#team .turnstile::after {
+  content: '';
+  flex: 1;
+  height: 9px;
+  margin: 0.12em 2.75% 0 6px; /* right margin = gap before the dragon head */
+  padding-right: 9px;         /* keeps the small dots clear of the big one */
+  background:
+    radial-gradient(circle, var(--accent) 1.2px, transparent 1.6px)
+      left center / 6px 9px repeat-x content-box,
+    radial-gradient(circle, var(--accent) 2.2px, transparent 2.7px)
+      right center / 9px 9px no-repeat border-box;
+  opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  #team .turnstile {
+    font-size: 21px;
+    gap: 10px;
+  }
+  #team .turnstile::after {
+    margin-right: 7.4%; /* the divider is narrower on phones */
+  }
+}
