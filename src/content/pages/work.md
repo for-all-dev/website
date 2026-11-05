@@ -6,8 +6,8 @@
 - **[A benchmark for vericoding: formally verified program synthesis](https://arxiv.org/abs/2509.22908)**
 - **[Proving the Coding Interview: A Benchmark for Formally Verified Code Generation](https://arxiv.org/abs/2502.05714)**
 
-### Comms/movement stuff
+### Comms & Fieldbuilding
 
-- **[Can we secure AI with formal methods?](https://newsletter.for-all.dev)**
-- **[FMxAI](https://fmxai.org)**
-- **[Secure Program Synthesis](https://apartresearch.com/fellowships/the-secure-program-synthesis-fellowship)** (fellowship, hackathon, groupchat).
+- **[Can we secure AI with formal methods?](https://newsletter.for-all.dev)**: Newsletter
+- **[FMxAI](https://fmxai.org)**: Formal methods × AI conference series
+- **[Secure Program Synthesis](https://apartresearch.com/fellowships/the-secure-program-synthesis-fellowship)**: Fellowship, hackathon, network

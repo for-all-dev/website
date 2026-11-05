@@ -7,14 +7,16 @@ export function Section({
   children,
 }: {
   id: string
-  label: string
+  label?: string
   children: ReactNode
 }) {
   return (
     <section id={id} className="proof">
-      <p className="turnstile">
-        <span aria-hidden="true">⊨</span> {label}
-      </p>
+      {label && (
+        <p className="turnstile">
+          <span aria-hidden="true">⊨</span> {label}
+        </p>
+      )}
       <div className="proof-body">{children}</div>
     </section>
   )

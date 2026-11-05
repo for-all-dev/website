@@ -449,6 +449,7 @@ h4:hover .heading-anchor,
 .team-bio a.ext-link::after {
   content: '↗';
   display: inline-block;
+  display: none; /* hidden by Zoe; delete this line to restore */
   margin-left: 0.15em;
   font-size: 0.85em;
   transform: translateY(-0.05em);

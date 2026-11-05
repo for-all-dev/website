@@ -12,14 +12,14 @@ import { ClientLogos } from '../components/ClientLogos'
 export function Home() {
   return (
     <>
-      <Section id="about" label="about">
+      <Section id="about">
         <Markdown source={heroRaw} />
       </Section>
 
       {clients.length > 0 && (
         <>
           <Qed />
-          <Section id="portfolio" label="portfolio">
+          <Section id="portfolio" label="client portfolio">
             <ClientLogos />
           </Section>
         </>
