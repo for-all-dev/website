@@ -1,17 +1,63 @@
 /* Static plaque wall for the client portfolio (replaces the scrolling
-   marquee). Plaque, frame and logo styling still come from index.css. */
+   marquee): two rows of three, pulled toward the centre. Base plaque, frame
+   and logo styling come from index.css; these rules size them down. */
 
 .client-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px 26px;
-  justify-items: center;
+  grid-template-columns: repeat(3, 132px);
+  justify-content: center;
+  gap: 14px 12px;
+  align-items: start;
   padding: 4px 0 2px;
+}
+
+.client-grid .client-plaque {
+  width: 132px;
+}
+
+.client-grid .client-plaque-frame {
+  height: 68px;
+  padding: 9px 12px;
+}
+
+.client-grid .client-name {
+  font-size: 10.5px;
+}
+
+/* Section label: centred between two thin rules, without the ⊨ mark. */
+#portfolio .turnstile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+#portfolio .turnstile::before,
+#portfolio .turnstile::after {
+  content: '';
+  flex: 1;
+  max-width: 160px;
+  height: 1px;
+  background: var(--rule);
+}
+
+#portfolio .turnstile > span {
+  display: none;
 }
 
 @media (max-width: 600px) {
   .client-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 10px;
+  }
+  .client-grid .client-plaque {
+    width: 100%;
+  }
+  .client-grid .client-plaque-frame {
+    height: 52px;
+    padding: 6px 7px;
+  }
+  .client-grid .client-name {
+    font-size: 9px;
   }
 }
