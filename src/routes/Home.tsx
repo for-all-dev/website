@@ -27,7 +27,7 @@ export function Home() {
       {clients.length > 0 && (
         <>
           <Qed />
-          <Section id="portfolio" label="client portfolio">
+          <Section id="portfolio" label="client portfolio:">
             <ClientLogos />
           </Section>
         </>
