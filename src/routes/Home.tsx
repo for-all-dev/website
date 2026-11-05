@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import heroRaw from '../content/pages/hero.md?raw'
 import workRaw from '../content/pages/work.md?raw'
 import contactRaw from '../content/pages/contact.md?raw'
+import comicsRaw from '../content/pages/comics.md?raw'
 import { Markdown } from '../lib/markdown'
 import { Section, Qed } from '../components/Proof'
 import { posts } from '../lib/posts'
@@ -17,6 +18,12 @@ export function Home() {
         <Markdown source={heroRaw} />
       </Section>
 
+      <Qed />
+
+      <Section id="work" label="work">
+        <Markdown source={workRaw} />
+      </Section>
+
       {clients.length > 0 && (
         <>
           <Qed />
@@ -28,8 +35,8 @@ export function Home() {
 
       <Qed />
 
-      <Section id="work" label="work">
-        <Markdown source={workRaw} />
+      <Section id="contact" label="contact">
+        <Markdown source={contactRaw} />
       </Section>
 
       {staff.length > 0 && (
@@ -63,8 +70,8 @@ export function Home() {
 
       <Qed />
 
-      <Section id="contact" label="contact">
-        <Markdown source={contactRaw} />
+      <Section id="comics">
+        <Markdown source={comicsRaw} />
       </Section>
 
       {posts.length > 0 && (
