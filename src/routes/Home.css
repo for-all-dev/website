@@ -1,0 +1,21 @@
+/* Team: explicit columns (see `column:` in src/content/staff/*.md). Each
+   column is its own .team-grid list, so it keeps the no-manicule rule. */
+
+.team-columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.team-columns > .team-grid {
+  flex: 1;
+  min-width: 0;
+  columns: auto;
+}
+
+@media (max-width: 640px) {
+  .team-columns {
+    flex-direction: column;
+    gap: 0;
+  }
+}

@@ -12,6 +12,8 @@ export interface StaffMember {
   role: string
   photo: string
   order: number
+  /** 1, 2 or 3: which team column this person sits in (unset: spread evenly) */
+  column: number
   bio: string
 }
 
@@ -26,6 +28,7 @@ export const staff: StaffMember[] = Object.entries(modules)
       role: data.role ?? '',
       photo: data.photo ?? '',
       order: data.order ? Number(data.order) : Number.MAX_SAFE_INTEGER,
+      column: data.column ? Number(data.column) : 0,
       bio: content.trim(),
     }
   })

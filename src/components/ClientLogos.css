@@ -1,0 +1,17 @@
+/* Static plaque wall for the client portfolio (replaces the scrolling
+   marquee). Plaque, frame and logo styling still come from index.css. */
+
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 26px;
+  justify-items: center;
+  padding: 4px 0 2px;
+}
+
+@media (max-width: 600px) {
+  .client-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 16px;
+  }
+}

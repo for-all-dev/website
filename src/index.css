@@ -687,7 +687,7 @@ h4:hover .heading-anchor,
   list-style: none;
   margin: 0;
   padding: 0;
-  columns: 2 240px;
+  columns: 3 180px;
   column-gap: 32px;
 }
 
