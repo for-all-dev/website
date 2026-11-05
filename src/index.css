@@ -386,15 +386,15 @@ h4 {
 
 /* --- manicule bullets: the scribe's pointing hand --- */
 
-.proof-body ul:not(.footnote-list) {
+.proof-body ul:not(.footnote-list, .team-grid) {
   list-style: none;
   padding-left: 0.3em;
 }
-.proof-body ul:not(.footnote-list) > li {
+.proof-body ul:not(.footnote-list, .team-grid) > li {
   position: relative;
   padding-left: 1.7em;
 }
-.proof-body ul:not(.footnote-list) > li::before {
+.proof-body ul:not(.footnote-list, .team-grid) > li::before {
   content: '☞';
   position: absolute;
   left: 0;
@@ -685,15 +685,16 @@ h4:hover .heading-anchor,
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 32px;
+  columns: 2 240px;
+  column-gap: 32px;
 }
 
 .team-member {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  break-inside: avoid;
+  margin-bottom: 32px;
 }
 
 .team-photo {
@@ -752,16 +753,61 @@ h4:hover .heading-anchor,
   );
 }
 
+/* drift + panning are driven from ClientLogos.tsx (no CSS animation),
+   so the rail keeps moving under the cursor and can be dragged */
+.client-marquee {
+  cursor: grab;
+  touch-action: pan-y; /* vertical swipes still scroll the page */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.client-marquee.is-dragging {
+  cursor: grabbing;
+}
+
 .client-track {
   display: flex;
   align-items: flex-start;
   width: max-content;
-  animation: client-drift var(--marquee-duration, 35s) linear infinite;
+  will-change: transform;
 }
 
-.client-marquee:hover .client-track,
-.client-marquee:focus-within .client-track {
-  animation-play-state: paused;
+.client-rail {
+  position: relative;
+}
+
+.client-nudge {
+  position: absolute;
+  top: 34px;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink-muted);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.client-nudge:hover,
+.client-nudge:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.client-nudge-prev {
+  left: -6px;
+}
+
+.client-nudge-next {
+  right: -6px;
 }
 
 /* spacing lives in margin, not gap, so one roster is exactly
@@ -882,27 +928,8 @@ h4:hover .heading-anchor,
   }
 }
 
-@keyframes client-drift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(-1 * var(--marquee-shift, 50%)));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .client-track {
-    animation: none;
-  }
-  /* no drift: let the rail be scrolled by hand, one copy of the roster only */
-  .client-marquee {
-    overflow-x: auto;
-  }
-  .client-slot[aria-hidden='true'] {
-    display: none;
-  }
-}
+/* prefers-reduced-motion: ClientLogos.tsx skips the auto-drift; the rail
+   still pans by drag, wheel, and the arrow buttons. */
 
 /* --- post log / index --- */
 
