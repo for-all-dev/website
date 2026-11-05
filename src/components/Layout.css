@@ -1,0 +1,39 @@
+/* Sticky header (stays at the top while scrolling) and no wyrm under it.
+   Delete this file's import in Layout.tsx to restore the original header. */
+
+/* `overflow-x: hidden` on html/body (index.css) turns body into its own
+   scroll box, which stops position: sticky from working; `clip` hides
+   sideways overflow the same way without that side effect. */
+html,
+body {
+  overflow-x: clip;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 16px 0 14px;
+  /* border-bottom: 1px solid var(--rule); hidden by Zoe; uncomment to restore */
+}
+
+/* A mostly see-through, frosted backing that runs edge to edge of the
+   window, so the page's glow shows through while scrolled text blurs out.
+   The header itself (and so its bottom rule) stays the text column's width. */
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 -100vmax;
+  z-index: -1;
+  background: color-mix(in srgb, var(--paper) 30%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.wyrm-rule.wyrm-rule-header {
+  display: none;
+}
+
+.site-main {
+  padding-top: 28px;
+}

@@ -3,6 +3,7 @@ import { LogoMark } from "./LogoMark";
 import { WaxSeal } from "./WaxSeal";
 import { WyrmRule } from "./WyrmRule";
 import { Signature } from "./Signature";
+import "./Layout.css";
 
 export function Layout() {
     return (
