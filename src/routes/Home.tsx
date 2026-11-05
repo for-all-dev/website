@@ -33,12 +33,6 @@ export function Home() {
         </>
       )}
 
-      <Qed />
-
-      <Section id="contact">
-        <Markdown source={contactRaw} />
-      </Section>
-
       {staff.length > 0 && (
         <>
           <Qed />
@@ -67,6 +61,12 @@ export function Home() {
           </Section>
         </>
       )}
+
+      <Qed />
+
+      <Section id="contact">
+        <Markdown source={contactRaw} />
+      </Section>
 
       <Qed />
 
