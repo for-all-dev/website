@@ -33,29 +33,27 @@
 
 #portfolio .turnstile {
   font-family: var(--font-body);
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 700;
   letter-spacing: normal;
   text-transform: capitalize;
   color: var(--ink);
   line-height: 1.65;
-  padding-top: 20px;
-  /* shrink to its content and sit centred over the two plaques below */
-  justify-self: center;
+  padding-top: 23px;
+  /* sized so it runs from the left edge of the first plaque below to
+     where it ended before (just short of the second plaque's right side) */
+  justify-self: start;
   width: fit-content;
-  /* then nudged about two letters left of dead centre */
-  position: relative;
-  left: -24px;
 }
 
 #portfolio .turnstile::first-letter {
   float: left;
   font-family: var(--font-display);
-  font-size: 59px; /* same size as the opening F */
+  font-size: 67px;
   font-weight: 600;
   line-height: 0.8;
   padding: 0.1em 0.14em 0.02em;
-  margin: -15px 0.07em -0.3em 0;
+  margin: -17px 0.07em -0.3em 0;
   color: var(--accent);
   background: var(--gold-soft);
   border: 1px solid var(--gold);
@@ -94,7 +92,7 @@
   #portfolio .turnstile {
     grid-column: 1 / -1;
     margin: 0;
-    left: 0;
+    justify-self: center;
   }
   #portfolio .client-plaque:nth-child(1),
   #portfolio .client-plaque:nth-child(2) {
