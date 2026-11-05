@@ -20,7 +20,7 @@ export function Home() {
 
       <Qed />
 
-      <Section id="work" label="work">
+      <Section id="work">
         <Markdown source={workRaw} />
       </Section>
 

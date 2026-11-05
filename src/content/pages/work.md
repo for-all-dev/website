@@ -1,7 +1,7 @@
 ### Papers
 
 - **[A Compile-Validated Proof Synthesis Benchmark over 57 Lean 4 Repositories](https://for-all.dev/papers/ablate-proof.pdf)**
-- **[Tractable Problems in AI Security via Formal Methods](https://tractable.for-all.dev/paper.pdf)**
+- **Tractable Problems in AI Security via Formal Methods**: [Paper](https://tractable.for-all.dev/paper.pdf) | [Web version](https://tractable.for-all.dev)
 - **[FVSpec: Real-World Property-Based Tests as Lean Challenges](https://fvspec.galois.com)**
 - **[A benchmark for vericoding: formally verified program synthesis](https://arxiv.org/abs/2509.22908)**
 - **[Proving the Coding Interview: A Benchmark for Formally Verified Code Generation](https://arxiv.org/abs/2502.05714)**
