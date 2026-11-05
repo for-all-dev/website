@@ -10,19 +10,6 @@ import { clients } from '../lib/clients'
 import { ClientLogos } from '../components/ClientLogos'
 import './Home.css'
 
-const TEAM_COLUMNS = 3
-
-// Each person's `column:` frontmatter picks their column; anyone without one
-// is dealt round-robin. Columns stack independently, so a long bio never
-// pushes the next row down in the other columns.
-const teamColumns = Array.from({ length: TEAM_COLUMNS }, (_, c) =>
-  staff.filter((member, idx) =>
-    (member.column >= 1 && member.column <= TEAM_COLUMNS
-      ? member.column - 1
-      : idx % TEAM_COLUMNS) === c,
-  ),
-)
-
 export function Home() {
   return (
     <>
@@ -49,31 +36,27 @@ export function Home() {
         <>
           <Qed />
           <Section id="team" label="team">
-            <div className="team-columns">
-              {teamColumns.map((column, c) => (
-                <ul key={c} className="team-grid">
-                  {column.map((member) => (
-                    <li key={member.slug} className="team-member">
-                      {member.photo && (
-                        <img
-                          className="team-photo"
-                          src={member.photo}
-                          alt={member.name}
-                          loading="lazy"
-                        />
-                      )}
-                      <p className="team-name">{member.name}</p>
-                      {member.role && <p className="team-role">{member.role}</p>}
-                      {member.bio && (
-                        <div className="team-bio">
-                          <Markdown source={member.bio} />
-                        </div>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+            <ul className="team-grid team-list">
+              {staff.map((member) => (
+                <li key={member.slug} className="team-member">
+                  {member.photo && (
+                    <img
+                      className="team-photo"
+                      src={member.photo}
+                      alt={member.name}
+                      loading="lazy"
+                    />
+                  )}
+                  <p className="team-name">{member.name}</p>
+                  {member.role && <p className="team-role">{member.role}</p>}
+                  {member.bio && (
+                    <div className="team-bio">
+                      <Markdown source={member.bio} />
+                    </div>
+                  )}
+                </li>
               ))}
-            </div>
+            </ul>
           </Section>
         </>
       )}

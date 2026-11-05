@@ -1,21 +1,71 @@
-/* Team: explicit columns (see `column:` in src/content/staff/*.md). Each
-   column is its own .team-grid list, so it keeps the no-manicule rule. */
+/* Team: one person per row. Photo on the left; to its right, name and
+   title share one line level with the top of the photo, bio underneath.
+   The list keeps the .team-grid class so the no-manicule rule still applies. */
 
-.team-columns {
+.team-grid.team-list {
+  columns: auto;
+  padding-left: 0; /* beats the 1.6em list indent from `.proof-body ul` */
   display: flex;
-  align-items: flex-start;
-  gap: 32px;
+  flex-direction: column;
+  gap: 40px;
 }
 
-.team-columns > .team-grid {
-  flex: 1;
-  min-width: 0;
-  columns: auto;
+.team-list .team-member {
+  display: grid;
+  grid-template-columns: 180px auto 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 28px;
+  margin-bottom: 0;
+}
+
+/* beats `.proof-body img`, whose 1.5em top margin pushed photos below the name */
+.team-list .team-photo {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  margin: 0;
+}
+
+/* beats `.proof-body p`, whose 1em bottom margin spaced out name/title/bio */
+.team-list .team-name,
+.team-list .team-role {
+  grid-row: 1;
+  align-self: baseline;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.team-list .team-name {
+  grid-column: 2;
+}
+
+.team-list .team-role {
+  grid-column: 3;
+  margin-left: -16px; /* sit closer to the name than the photo gap */
+}
+
+.team-list .team-bio {
+  grid-column: 2 / 4;
+  grid-row: 2;
+  margin-top: 8px;
 }
 
 @media (max-width: 640px) {
-  .team-columns {
-    flex-direction: column;
-    gap: 0;
+  .team-list .team-member {
+    grid-template-columns: 110px 1fr;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 18px;
+  }
+  .team-list .team-photo {
+    grid-row: 1 / 4;
+  }
+  .team-list .team-role {
+    grid-column: 2;
+    grid-row: 2;
+    margin-left: 0;
+    margin-top: 2px;
+  }
+  .team-list .team-bio {
+    grid-column: 2;
+    grid-row: 3;
   }
 }
