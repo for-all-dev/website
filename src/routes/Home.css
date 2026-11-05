@@ -80,11 +80,13 @@
    margin lets the second line run full width underneath it. */
 #about .proof-body > p:first-child {
   padding-top: 20px;
+  font-size: 20px;
 }
 
 #about .proof-body > p:first-child::first-letter {
+  font-size: 59px; /* keep the F its original size */
   padding: 0.1em 0.14em 0.02em;
-  margin: -15px 0.16em -0.3em 0;
+  margin: -15px 0.07em -0.3em 0;
 }
 
 /* When the opening sentence wraps (narrower screens), go back to a classic
@@ -95,7 +97,7 @@
   }
   #about .proof-body > p:first-child::first-letter {
     padding: 0.12em 0.14em 0.08em;
-    margin: 0.05em 0.16em 0 0;
+    margin: 0.05em 0.07em 0 0;
   }
   /* the next paragraph always starts below the F */
   #about .proof-body > p + p {
