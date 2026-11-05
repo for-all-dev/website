@@ -37,3 +37,16 @@ body {
 .site-main {
   padding-top: 28px;
 }
+
+/* Bullet manicules: the pointing-fist drawing (public/img/manicule.svg),
+   used as a mask so it takes the site's red, in place of the ☞ character.
+   Delete this rule to go back to the ☞ glyph. */
+.proof-body ul:not(.footnote-list, .team-grid) > li::before {
+  content: '';
+  top: 0.52em;
+  width: 1.12em;
+  height: 0.6em;
+  background-color: var(--accent);
+  -webkit-mask: url('/img/manicule.svg') no-repeat left center / contain;
+  mask: url('/img/manicule.svg') no-repeat left center / contain;
+}
