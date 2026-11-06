@@ -118,3 +118,55 @@ section.proof {
     --gold-soft: color-mix(in srgb, var(--gold) 16%, transparent);
   }
 }
+
+/* Footer: crest on the left, a red bar, then the text left-aligned against
+   it; the pair sits centred. Phones stack them. */
+.site-footer {
+  /* sits a little lower: more room under the dragon, less below the text */
+  padding-top: 39px;
+  padding-bottom: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+}
+
+.site-footer .crest {
+  flex: none;
+  margin: 0;
+}
+
+.site-footer .footer-text {
+  margin: 0;
+  text-align: left;
+  line-height: 1.6;
+  border-left: 2px solid var(--accent);
+  padding-left: 22px;
+}
+
+.site-footer .footer-text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.site-footer .footer-sep {
+  color: var(--gold);
+  margin: 0 0.4em;
+}
+
+.site-footer .footer-text a {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .site-footer .footer-text {
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+  }
+}

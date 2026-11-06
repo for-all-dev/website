@@ -72,7 +72,7 @@
 
 /* breathing room between the header and the opening line (About has no label) */
 #about {
-  padding-top: 24px;
+  padding-top: 36px;
 }
 
 /* Opening line: the red initial keeps its tight float box, but is lifted so
@@ -147,7 +147,7 @@
   content: '';
   flex: 1;
   height: 9px;
-  margin: 0.12em 2.75% 0 6px; /* right margin = gap before the dragon head */
+  margin: 0.12em calc(2.75% + 24px) 0 6px; /* ends four dots short of the dragon head */
   padding-right: 9px;         /* keeps the small dots clear of the big one */
   background:
     radial-gradient(circle, var(--accent) 1.2px, transparent 1.6px)
@@ -163,7 +163,7 @@
     gap: 10px;
   }
   #team .turnstile::after {
-    margin-right: 7.4%; /* the divider is narrower on phones */
+    margin-right: calc(7.4% + 24px); /* the divider is narrower on phones */
   }
 }
 
@@ -223,4 +223,27 @@
   #team .team-list .team-role::before {
     content: none;
   }
+}
+
+/* comics at the bottom: about four-fifths of the column, centred */
+#comics .proof-body img {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Posts: when the opening paragraph is shorter than the drop cap, whatever
+   comes next (e.g. a heading) starts below the initial, not squeezed beside it */
+.theorem .proof-body > p:first-child + * {
+  clear: left;
+}
+
+/* a little air between the initial and whatever starts beneath it */
+.theorem .proof-body > p:first-child::first-letter {
+  margin-bottom: 12px;
+}
+
+/* Post card: the parchment slightly see-through, like the logo plaques */
+.theorem {
+  background: color-mix(in srgb, var(--paper-raised) 66%, transparent);
 }

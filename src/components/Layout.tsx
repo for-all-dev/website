@@ -52,9 +52,13 @@ export function Layout() {
                         <Signature className="crest-signature" />
                         <WaxSeal className="crest-seal" />
                     </div>
-                    <p>
-                        Forall R&amp;D — guiding AI safety orgs through the formal
-                        methods explosion.{" "}
+                    <p className="footer-text">
+                        <strong>Forall R&amp;D</strong>
+                        <span className="footer-sep" aria-hidden="true">|</span>
+                        guiding AI safety orgs through the formal methods
+                        explosion.
+                        <br />
+                        Reach out at{" "}
                         <a href="mailto:hello@for-all.dev">hello@for-all.dev</a>
                     </p>
                 </footer>
