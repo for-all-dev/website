@@ -111,7 +111,7 @@
 /* Dark mode: dark plaques in gold frames, logos in one warm parchment tone */
 @media (prefers-color-scheme: dark) {
   .client-plaque-frame {
-    background: #1a120a;
+    background: rgb(26 18 10 / 0.75);
     box-shadow: inset 0 0 0 1px var(--gold-soft);
   }
   .client-plaque-frame .client-logo,
@@ -134,5 +134,12 @@
 @supports (-moz-appearance: none) {
   #portfolio .turnstile::first-letter {
     padding-bottom: 0.14em;
+  }
+}
+
+/* plaque backgrounds slightly see-through (light mode; dark mode is above) */
+@media (prefers-color-scheme: light) {
+  .client-grid .client-plaque-frame {
+    background: color-mix(in srgb, var(--plaque) 75%, transparent);
   }
 }

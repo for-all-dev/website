@@ -196,3 +196,31 @@
     padding-bottom: 0.14em;
   }
 }
+
+/* Staff titles: red Cinzel small caps after a thin gold bar,
+   e.g. "QUINN DOUGHERTY | PRINCIPAL" */
+#team .team-list .team-role {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-left: -16px;
+}
+
+#team .team-list .team-role::before {
+  content: '|';
+  color: var(--gold);
+  margin-right: 10px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 640px) {
+  /* on phones the title drops under the name, so no bar */
+  #team .team-list .team-role {
+    margin-left: 0;
+  }
+  #team .team-list .team-role::before {
+    content: none;
+  }
+}
