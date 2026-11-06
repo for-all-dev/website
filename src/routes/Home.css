@@ -187,3 +187,12 @@
 #log .post-list a {
   border-bottom: none;
 }
+
+/* Firefox only (Chrome ignores this block): Firefox places a floated initial
+   letter lower inside its box than Chrome does, so the bottom of the letter
+   poked out. Extra bottom padding brings the box down to cover it. */
+@supports (-moz-appearance: none) {
+  #about .proof-body > p:first-child::first-letter {
+    padding-bottom: 0.14em;
+  }
+}

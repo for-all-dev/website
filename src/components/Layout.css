@@ -108,3 +108,13 @@ section.proof {
   height: 22.5px;
   margin-left: -10px; /* a little closer to Contact than the other links */
 }
+
+/* Dark mode: every gold on the site becomes a warm amber-honey (between
+   the "amber" and "honey-copper" mock-ups), a touch lighter than before. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gold: #d6973e; /* fallback for older browsers */
+    --gold: oklch(0.763 0.138 63);
+    --gold-soft: color-mix(in srgb, var(--gold) 16%, transparent);
+  }
+}
