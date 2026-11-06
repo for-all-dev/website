@@ -295,3 +295,8 @@
 #contact + .qed {
   margin-top: 34px;
 }
+
+/* space between paragraphs within a staff bio */
+#team .team-bio p + p {
+  margin-top: 0.7em;
+}

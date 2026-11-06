@@ -4,6 +4,6 @@ role: Research Engineer
 photo: /img/staff/aram.jpeg
 order: 3
 ---
-The unifying theme of Aram's career has been applying mathematical methods to develop correct, reliable, and understandable systems. He solves problems by discovering or inventing the mathematical formalism needed to capture their essence, lifting them into the corresponding semantic domain, and solving them there. 
-Aram has worked on programming-language design and implementation, operating systems, cloud infrastructure, compilers, security products, and hardware. He infamously wrote the Go ARM64 and SPARC64 targets.
-Aram is a firm believer in the Curry–Howard correspondence and thinks dynamic problems become clear and simple once one discovers the appropriate logic.
+Aram builds correct and understandable systems by discovering the mathematical formalism that captures a problem, lifting it into the corresponding semantic domain, and solving it there.
+
+He has worked on programming languages, operating systems, cloud infrastructure, compilers, security products, and hardware. He infamously wrote the Go ARM64 and SPARC64 targets. A firm believer in the Curry–Howard correspondence, he thinks dynamic problems become clear and simple once one discovers the appropriate logic.
