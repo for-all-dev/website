@@ -4,8 +4,8 @@
   display: block;
   width: 111%;
   margin-left: -5.5%;
-  color: var(--rule);
-  opacity: 0.9;
+  /* the tan of the old serpent, nudged toward the gold of the crests */
+  color: color-mix(in srgb, var(--rule) 82%, var(--gold));
 }
 
 .dragon-rule svg {
@@ -25,5 +25,25 @@
   .dragon-rule {
     width: 100%;
     margin-left: 0;
+  }
+}
+
+/* the dragon above the footer: the page's red with its saturation turned
+   down (same hue and lightness, less colour) */
+.dragon-rule.wyrm-rule-footer {
+  color: #8c4a42; /* fallback for older browsers */
+  color: oklch(from var(--accent) l calc(c * 0.55) h);
+}
+
+/* Dark mode: much lighter. Dividers sit just below the bio text colour;
+   the footer dragon uses the page's red as is. */
+@media (prefers-color-scheme: dark) {
+  .dragon-rule {
+    color: color-mix(in srgb, var(--ink-muted) 85%, var(--paper));
+  }
+  /* the page's red, darker (toward the brown background) and richer */
+  .dragon-rule.wyrm-rule-footer {
+    color: #632b25; /* fallback for older browsers */
+    color: oklch(from var(--accent) calc(l * 0.6) calc(c * 0.52) h);
   }
 }
