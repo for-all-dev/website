@@ -47,6 +47,7 @@
   grid-column: 2 / 4;
   grid-row: 2;
   margin-top: 8px;
+  line-height: 1.45;
 }
 
 @media (max-width: 640px) {
@@ -147,7 +148,7 @@
   content: '';
   flex: 1;
   height: 9px;
-  margin: 0.12em calc(2.75% + 24px) 0 6px; /* ends four dots short of the dragon head */
+  margin: 0.12em calc(2.75% + 18px) 0 6px; /* ends three dots short of the dragon head */
   padding-right: 9px;         /* keeps the small dots clear of the big one */
   background:
     radial-gradient(circle, var(--accent) 1.2px, transparent 1.6px)
@@ -163,7 +164,7 @@
     gap: 10px;
   }
   #team .turnstile::after {
-    margin-right: calc(7.4% + 24px); /* the divider is narrower on phones */
+    margin-right: calc(7.4% + 18px); /* the divider is narrower on phones */
   }
 }
 
@@ -215,13 +216,34 @@
   letter-spacing: 0;
 }
 
+/* name + title wrapper: invisible on wide screens (the grid places each
+   piece), a wrapping row on phones */
+#team .team-heading {
+  display: contents;
+}
+
 @media (max-width: 640px) {
-  /* on phones the title drops under the name, so no bar */
-  #team .team-list .team-role {
-    margin-left: 0;
+  /* phones: same "Name | TITLE" line as desktop; if it doesn't fit, the
+     whole title moves to the next line together with its bar */
+  #team .team-list .team-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 10px;
+    row-gap: 2px;
+    grid-column: 2;
+    grid-row: 1;
   }
-  #team .team-list .team-role::before {
-    content: none;
+  #team .team-list .team-heading .team-name,
+  #team .team-list .team-heading .team-role {
+    grid-column: auto;
+    grid-row: auto;
+    margin: 0;
+  }
+  #team .team-list .team-role {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
   }
 }
 
@@ -246,4 +268,30 @@
 /* Post card: the parchment slightly see-through, like the logo plaques */
 .theorem {
   background: color-mix(in srgb, var(--paper-raised) 66%, transparent);
+}
+
+/* phones: bio sits closer under the name/title, with tighter line spacing */
+@media (max-width: 640px) {
+  #team .team-list .team-bio {
+    margin-top: 3px;
+    line-height: 1.45;
+  }
+}
+
+/* the header's Contact link lands with the dragon just tucked under the
+   sticky header: 58px header + the 44px gap below the dragon, less 2px */
+#contact {
+  scroll-margin-top: 100px;
+}
+
+/* a little less space between the logo plaques and the dragon below them
+   (about half a line) */
+#portfolio + .qed {
+  margin-top: 29px;
+}
+
+/* a little less space between the end of Contact and the dragon below it
+   (about a quarter line) */
+#contact + .qed {
+  margin-top: 34px;
 }

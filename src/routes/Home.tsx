@@ -48,8 +48,10 @@ export function Home() {
                       loading="lazy"
                     />
                   )}
-                  <p className="team-name">{member.name}</p>
-                  {member.role && <p className="team-role">{member.role}</p>}
+                  <div className="team-heading">
+                    <p className="team-name">{member.name}</p>
+                    {member.role && <p className="team-role">{member.role}</p>}
+                  </div>
                   {member.bio && (
                     <div className="team-bio">
                       <Markdown source={member.bio} />

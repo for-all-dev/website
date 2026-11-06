@@ -24,8 +24,8 @@
 @media (max-width: 640px) {
   .dragon-rule {
     /* a touch wider than the text, reaching into the side gutters */
-    width: 108%;
-    margin-left: -4%;
+    width: 105%;
+    margin-left: -2.5%;
   }
   .theorem .dragon-rule {
     width: 100%;
