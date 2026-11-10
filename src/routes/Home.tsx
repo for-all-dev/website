@@ -18,20 +18,20 @@ export function Home() {
         <Markdown source={heroRaw} />
       </Section>
 
+      {clients.length > 0 && (
+        <>
+          <Qed />
+          <Section id="portfolio" label="client portfolio">
+            <ClientLogos />
+          </Section>
+        </>
+      )}
+
       <Qed />
 
       <Section id="work">
         <Markdown source={workRaw} />
       </Section>
-
-      {clients.length > 0 && (
-        <>
-          <Qed />
-          <Section id="portfolio" label="client portfolio:">
-            <ClientLogos />
-          </Section>
-        </>
-      )}
 
       {staff.length > 0 && (
         <>

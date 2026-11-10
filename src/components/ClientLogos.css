@@ -1,77 +1,49 @@
-/* Static plaque wall for the client portfolio: a 4-column grid spanning the
-   text column. Top row is the section label (left, two columns wide) and two
-   plaques; the other four plaques fill the row below. Base plaque, frame and
-   logo styling come from index.css. */
+/* Static plaque wall for the client portfolio: a centered heading between two
+   fading gold rules, then the plaques three across in two rows. Base plaque,
+   frame and logo styling come from index.css. */
 
 #portfolio {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px 14px;
-  align-items: center;
   /* inset on both sides by the same 2em the bulleted lists indent their text */
   padding-inline: 2em;
 }
 
-/* let the label and the plaques all sit in the same grid */
-#portfolio .proof-body,
-#portfolio .client-grid {
-  display: contents;
-}
-
+/* Heading: red Cinzel caps, widely spaced, centered between gold rules that
+   fade out toward the edges. No ⊨ mark. */
 #portfolio .turnstile {
-  grid-column: 1 / 3;
-  grid-row: 1;
-  margin: 0 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-size: 17px;
+  letter-spacing: 0.24em;
+  margin: 0 0 28px;
 }
 
-/* Label styled exactly like the opening line: a boxed red Cinzel initial
-   the same size as the F, then the rest in bold body type, sitting on the
-   bottom of the initial. No ⊨ mark. */
 #portfolio .turnstile > span {
   display: none;
 }
 
-#portfolio .turnstile {
-  font-family: var(--font-body);
-  font-size: 23px;
-  font-weight: 700;
-  letter-spacing: normal;
-  text-transform: capitalize;
-  color: var(--ink);
-  line-height: 1.65;
-  padding-top: 23px;
-  /* sized so it runs from the left edge of the first plaque below to
-     where it ended before (just short of the second plaque's right side) */
-  justify-self: start;
-  width: fit-content;
+#portfolio .turnstile::before,
+#portfolio .turnstile::after {
+  content: '';
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
 }
 
-#portfolio .turnstile::first-letter {
-  float: left;
-  font-family: var(--font-display);
-  font-size: 67px;
-  font-weight: 600;
-  line-height: 0.8;
-  padding: 0.1em 0.14em 0.02em;
-  margin: -17px 0.07em -0.3em 0;
-  color: var(--accent);
-  background: var(--gold-soft);
-  border: 1px solid var(--gold);
+#portfolio .turnstile::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+#portfolio .client-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 26px;
+  align-items: start;
 }
 
 #portfolio .client-plaque {
   width: 100%;
-  align-self: start;
-}
-
-#portfolio .client-plaque:nth-child(1) {
-  grid-column: 3;
-  grid-row: 1;
-}
-
-#portfolio .client-plaque:nth-child(2) {
-  grid-column: 4;
-  grid-row: 1;
 }
 
 .client-grid .client-plaque-frame {
@@ -84,26 +56,25 @@
 }
 
 @media (max-width: 600px) {
-  /* label lined up with the plaques; plaques two across in the middle 80% of the
-     column, the same width as the comics at the bottom */
+  /* plaques two across in the middle 80% of the column, the same width as
+     the comics at the bottom */
   #portfolio {
-    grid-template-columns: 1fr 4fr 4fr 1fr;
-    gap: 14px 10px;
-    padding-inline: 0;
+    padding-inline: 10%;
   }
   #portfolio .turnstile {
-    grid-column: 2 / -1; /* starts at the left edge of the plaques */
-    margin: 0 0 14px;
-    justify-self: start;
-    left: 0;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    white-space: nowrap;
+    gap: 10px;
+    margin-bottom: 18px;
   }
-  #portfolio .client-plaque:nth-child(odd) {
-    grid-column: 2;
-    grid-row: auto;
+  #portfolio .turnstile::before,
+  #portfolio .turnstile::after {
+    width: 30px;
   }
-  #portfolio .client-plaque:nth-child(even) {
-    grid-column: 3;
-    grid-row: auto;
+  #portfolio .client-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 10px;
   }
   .client-grid .client-plaque-frame {
     height: 52px;
@@ -131,15 +102,6 @@
   .client-plaque:focus-visible .client-logo.is-inverted {
     filter: brightness(0) invert(1);
     opacity: 1;
-  }
-}
-
-/* Firefox only (Chrome ignores this block): Firefox places a floated initial
-   letter lower inside its box than Chrome does, so the bottom of the letter
-   poked out. Extra bottom padding brings the box down to cover it. */
-@supports (-moz-appearance: none) {
-  #portfolio .turnstile::first-letter {
-    padding-bottom: 0.14em;
   }
 }
 
