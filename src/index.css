@@ -707,7 +707,7 @@ h4:hover .heading-anchor,
   padding: 4px;
   background: var(--paper);
   margin-bottom: 12px;
-  filter: sepia(0.5) saturate(1.15) contrast(0.97);
+  filter: sepia(0.3) saturate(1.09) contrast(0.982);
 }
 
 .team-name {
